@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+
+set -e
+
+
+command="apk add --update --no-cache"
+for module in "$@"; do
+	if [ "${module}" = "cli" ]; then
+		command="${command} php7"
+	else
+		command="${command} php7-${module}"
+	fi
+done
+
+
+exec ${command}

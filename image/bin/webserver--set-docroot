@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+
+set -e
+
+
+docroot=${1}
+
+
+sed -i "s|DocumentRoot /app|DocumentRoot ${docroot}|" /etc/apache2/httpd.conf
+sed -i "s|<Directory /app>|<Directory ${docroot}>|" /etc/apache2/httpd.conf

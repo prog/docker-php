@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+
+set -e
+
+
+# initialize
+
+webserver--init
+
+
+## execute command
+
+exec $@

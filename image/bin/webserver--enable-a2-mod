@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+
+set -e
+
+
+for module in "$@"; do
+	sed -i "/LoadModule ${module}_module/s/^#/ /" /etc/apache2/httpd.conf
+done
