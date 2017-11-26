@@ -7,7 +7,7 @@ Alpine based docker image with Apache (prefork) & PHP module.
 Supported tags / versions
 -------------------------
 - `7.1-apache2.4-alpine3.6` `7.1-apache-alpine` `7-apache-alpine` `latest`
-- TODO: `5.6-apache2.4-alpine3.6` `5.6-apache-alpine` `5-apache-alpine`
+- `5.6-apache2.4-alpine3.6` `5.6-apache-alpine` `5-apache-alpine`
 
 
 Customization

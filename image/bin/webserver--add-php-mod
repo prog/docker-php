@@ -4,12 +4,20 @@
 set -e
 
 
+if [ $(apk info -e php7-common) ]; then
+	php=php7
+elif [ $(apk info -e php5-common) ]; then
+	php=php5
+else
+	exit 1
+fi
+
 command="apk add --update --no-cache"
 for module in "$@"; do
-	if [ "${module}" = "cli" ]; then
+	if [ "${module}" = "cli" ] && [ "${php}" = "php7" ]; then
 		command="${command} php7"
 	else
-		command="${command} php7-${module}"
+		command="${command} ${php}-${module}"
 	fi
 done
 
