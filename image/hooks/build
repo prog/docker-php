@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+set -ex
+
+
+dockerRepo="${DOCKER_REPO}"
+currentTag="${DOCKER_TAG}"
+currentImage="${dockerRepo}:${currentTag}"
+
+
+if [ "${currentTag}" = '7.1-apache2.4-alpine3.6' ]; then
+	phpPackage='php7-apache2<7.1.999'
+elif [ "${currentTag}" = '5.6-apache2.4-alpine3.6' ]; then
+	phpPackage='php5-apache2<5.6.999'
+else
+	(>&2 echo "ERROR: invalid tag: '${currentTag}'")
+	exit 1
+fi
+
+
+docker build \
+	--build-arg "PHP_PACKAGE=${phpPackage}" \
+	-t "${currentImage}" .

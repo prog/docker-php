@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+
+set -ex
+
+
+dockerRepo="${DOCKER_REPO}"
+currentTag="${DOCKER_TAG}"
+currentImage="${dockerRepo}:${currentTag}"
+
+
+if [ "${currentTag}" = '7.1-apache2.4-alpine3.6' ]; then
+	extraTags=('7.1-apache-alpine' '7-apache-alpine' 'latest')
+elif [ "${currentTag}" = '5.6-apache2.4-alpine3.6' ]; then
+	extraTags=('5.6-apache-alpine' '5-apache-alpine')
+else
+	exit 0
+fi
+
+
+for extraTag in "${extraTags[@]}"; do
+	docker tag "${currentImage}" "${dockerRepo}:${extraTag}"
+	docker push "${dockerRepo}:${extraTag}"
+done
