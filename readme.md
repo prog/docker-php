@@ -1,14 +1,20 @@
 Base docker image for PHP applications
 ======================================
+[![Docker Build Status](https://img.shields.io/docker/build/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
+[![Docker Build Status](https://img.shields.io/docker/automated/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
+[![Docker Build Status](https://img.shields.io/docker/pulls/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
+[![Docker Build Status](https://img.shields.io/docker/stars/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
 
 Alpine based docker image with Apache (prefork) & PHP module.
 
 
 Supported tags / versions
 -------------------------
-- `7.1-apache2.4-alpine3.6` `7.1-apache-alpine` `7-apache-alpine` `latest`
-- `5.6-apache2.4-alpine3.6` `5.6-apache-alpine` `5-apache-alpine`
+- `7.1-apache2.4-alpine3.6` `7.1-apache-alpine` `7-apache-alpine` `latest`  
+  [![](https://images.microbadger.com/badges/image/prog/php:7.1-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:7.1-apache2.4-alpine3.6)
 
+- `5.6-apache2.4-alpine3.6` `5.6-apache-alpine` `5-apache-alpine`  
+  [![](https://images.microbadger.com/badges/image/prog/php:5.6-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:5.6-apache2.4-alpine3.6)
 
 Customization
 -------------
