@@ -23,8 +23,7 @@ RUN : \
  && :
 
 
-COPY apache.httpd.conf /etc/apache2/httpd.conf
-COPY bin/* /usr/bin/
+COPY root /
 
 
 ENTRYPOINT ["webserver--entrypoint"]
