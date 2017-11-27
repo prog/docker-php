@@ -10,7 +10,7 @@ currentImage="${dockerRepo}:${currentTag}"
 
 
 if [ "${currentTag}" = '7.1-apache2.4-alpine3.6' ]; then
-	extraTags=('7.1-apache-alpine' '7-apache-alpine' 'latest')
+	extraTags=('7.1-apache-alpine' '7-apache-alpine')
 elif [ "${currentTag}" = '5.6-apache2.4-alpine3.6' ]; then
 	extraTags=('5.6-apache-alpine' '5-apache-alpine')
 else
