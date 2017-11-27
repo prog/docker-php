@@ -27,7 +27,7 @@ COPY root /
 
 
 ENTRYPOINT ["webserver--entrypoint"]
-CMD ["httpd", "-D", "FOREGROUND"]
+CMD ["webserver--start"]
 
 
 EXPOSE 80
