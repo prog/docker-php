@@ -6,7 +6,7 @@ set -e
 
 # initialize
 
-webserver--init
+image--init
 
 
 ## execute command

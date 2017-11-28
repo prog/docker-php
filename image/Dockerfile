@@ -26,8 +26,8 @@ RUN : \
 COPY root /
 
 
-ENTRYPOINT ["webserver--entrypoint"]
-CMD ["webserver--start"]
+ENTRYPOINT ["image--entrypoint"]
+CMD ["image--command"]
 
 
 EXPOSE 80

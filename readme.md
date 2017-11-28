@@ -28,11 +28,11 @@ This image comes with no extra php modules. You need to add all modules required
 A helper script is provided for this purpose:
 
 ```bash
-webserver--add-php-mod [list of php modules]
+image--add-php-mod [list of php modules]
 ```
 
 ```Dockerfile
-RUN webserver--add-php-mod \
+RUN image--add-php-mod \
     cli gd mbstring pdo session ...  
 ```
 
@@ -42,11 +42,11 @@ Only minimal set of apache modules are enabled by default.
 Use the helper script to enable required modules in apache config file:
 
 ```bash
-webserver--enable-a2-mod [list of apache modules]
+image--enable-a2-mod [list of apache modules]
 ```
 
 ```Dockerfile
-RUN webserver--enable-a2-mod \
+RUN image--enable-a2-mod \
     deflate filter rewrite ...
 ```
 
@@ -56,27 +56,27 @@ Apache is set to serve `/app` directory by default.
 You can change it by running:
 
 ```bash
-webserver--set-docroot [path]
+image--set-docroot [path]
 ```
 
 ```Dockerfile
-RUN webserver--set-docroot /app/docroot
+RUN image--set-docroot /app/docroot
 ```
 
 ### Initialization script
 
-The entrypoint is set to run an initialization script (`/usr/bin/webserver--init`) before executing Apache when
+The entrypoint is set to run an initialization script (`/usr/bin/image--init`) before executing Apache when
 container is started. Initialization script is empty by default. You can add your own instructions there or replace
 the whole file.
 
 The helper script can be used to add instructions into the initialization script:
 
 ```bash
-webserver--on-init [script lines]
+image--on-init [script lines]
 ```
 
 ```Dockerfile
-RUN webserver--on-init \
+RUN image--on-init \
    '# My application initialization' \
    'echo "Starting my awesome application!"' \
    'chmod 777 /app/temp'
@@ -92,16 +92,16 @@ Add the `Dockerfile` to your project and edit it to your needs:
 FROM prog/php:7.1-apache2.4-alpine3.6
 
 ## install required php modules
-RUN webserver--add-php-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
+RUN image--add-php-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
 
 ## enable required apache modules
-RUN webserver--enable-a2-mod rewrite
+RUN image--enable-a2-mod rewrite
 
 ## set document root
-RUN webserver--set-docroot /app/public
+RUN image--set-docroot /app/public
 
 ## set container's initialization script
-RUN webserver--on-init \
+RUN image--on-init \
    'chmod 777 /app/temp /app/log /app/sessions' \
    'if [ "$''{APP__DB_MIGRATIONS}" ]; then' \
    '	/app/bin/db-migrations $''{APP__DB_MIGRATIONS}' \
