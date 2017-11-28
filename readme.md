@@ -10,6 +10,7 @@ Alpine based docker image with Apache (prefork) & PHP module.
 
 Supported tags / versions
 -------------------------
+
 - `7.1-apache2.4-alpine3.6` `7.1-apache-alpine` `7-apache-alpine`  
   [![](https://images.microbadger.com/badges/image/prog/php:7.1-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:7.1-apache2.4-alpine3.6)
 
@@ -20,7 +21,6 @@ Customization
 -------------
 
 Some helper scripts are bundled with the image to make it easier to setup and customize.
-
 
 ### Install PHP modules
 
@@ -39,15 +39,15 @@ RUN webserver--add-php-mod \
 ### Enable Apache modules
 
 Only minimal set of apache modules are enabled by default.
-Use the helper script to enable required modules in apache config file: 
+Use the helper script to enable required modules in apache config file:
 
 ```bash
-webserver--a2enmod [list of apache modules] 
+webserver--enable-a2-mod [list of apache modules]
 ```
 
 ```Dockerfile
-RUN webserver--a2enmod \
-    deflate filter rewrite ... 
+RUN webserver--enable-a2-mod \
+    deflate filter rewrite ...
 ```
 
 ### Change document root
@@ -63,7 +63,6 @@ webserver--set-docroot [path]
 RUN webserver--set-docroot /app/docroot
 ```
 
-
 ### Initialization script
 
 The entrypoint is set to run an initialization script (`/usr/bin/webserver--init`) before executing Apache when
@@ -78,7 +77,7 @@ webserver--on-init [script lines]
 
 ```Dockerfile
 RUN webserver--on-init \
-   '# My application initialization'
+   '# My application initialization' \
    'echo "Starting my awesome application!"' \
    'chmod 777 /app/temp'
 ```
@@ -92,11 +91,11 @@ Add the `Dockerfile` to your project and edit it to your needs:
 ```Dockerfile
 FROM prog/php:7.1-apache2.4-alpine3.6
 
-## install required php modules 
+## install required php modules
 RUN webserver--add-php-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
 
 ## enable required apache modules
-RUN webserver--a2enmod rewrite
+RUN webserver--enable-a2-mod rewrite
 
 ## set document root
 RUN webserver--set-docroot /app/public
