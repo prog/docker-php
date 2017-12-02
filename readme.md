@@ -42,11 +42,11 @@ Only minimal set of apache modules are enabled by default.
 Use the helper script to enable required modules in apache config file:
 
 ```bash
-image--enable-a2-mod [list of apache modules]
+image--apache-enable-mod [list of apache modules]
 ```
 
 ```Dockerfile
-RUN image--enable-a2-mod \
+RUN image--apache-enable-mod \
     deflate filter rewrite ...
 ```
 
@@ -95,7 +95,7 @@ FROM prog/php:7.1-apache2.4-alpine3.6
 RUN image--add-php-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
 
 ## enable required apache modules
-RUN image--enable-a2-mod rewrite
+RUN image--apache-enable-mod rewrite
 
 ## set document root
 RUN image--set-docroot /app/public
