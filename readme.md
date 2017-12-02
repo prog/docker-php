@@ -28,11 +28,11 @@ This image comes with no extra php modules. You need to add all modules required
 A helper script is provided for this purpose:
 
 ```bash
-image--add-php-mod [list of php modules]
+image--php-add-mod [list of php modules]
 ```
 
 ```Dockerfile
-RUN image--add-php-mod \
+RUN image--php-add-mod \
     cli gd mbstring pdo session ...  
 ```
 
@@ -92,7 +92,7 @@ Add the `Dockerfile` to your project and edit it to your needs:
 FROM prog/php:7.1-apache2.4-alpine3.6
 
 ## install required php modules
-RUN image--add-php-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
+RUN image--php-add-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
 
 ## enable required apache modules
 RUN image--apache-enable-mod rewrite
