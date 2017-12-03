@@ -7,8 +7,12 @@ set -ex
 dockerRepo="${DOCKER_REPO}"
 currentTag="${DOCKER_TAG}"
 features=`echo "${currentTag}" | sed -e 's/.*--\(\)/\1/'`
-commit=`git rev-parse --short HEAD`
-date=`date -u +'%Y-%m-%dT%H:%M:%SZ'`
+
+imageName='Base docker image for PHP applications'
+imageDescription='Alpine based docker image with Apache (prefork) & PHP module.'
+vcsUrl='https://github.com/prog/docker-php'
+vcsRef=`git rev-parse --short HEAD`
+buildDate=`date -u +'%Y-%m-%dT%H:%M:%SZ'`
 
 
 case "${features}" in
@@ -26,7 +30,10 @@ esac
 
 
 docker build \
+	--build-arg "IMAGE_NAME=${imageName}" \
+	--build-arg "IMAGE_DESCRIPTION=${imageDescription}" \
+	--build-arg "VCS_URL=${vcsUrl}" \
+	--build-arg "VCS_REF=${vcsRef}" \
+	--build-arg "BUILD_DATE=${buildDate}" \
 	--build-arg "PHP_PACKAGE=${phpPackage}" \
-	--build-arg "BUILD_DATE=${date}" \
-	--build-arg "VCS_REF=${commit}" \
 	-t "${dockerRepo}:${currentTag}" .
