@@ -1,5 +1,6 @@
 Base docker image for PHP applications
 ======================================
+[![Release](https://img.shields.io/github/release/prog/docker-php/all.svg?style=flat-square)](https://github.com/prog/docker-php/releases)
 [![Docker Build Status](https://img.shields.io/docker/build/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
 [![Docker Build Status](https://img.shields.io/docker/automated/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
 [![Docker Build Status](https://img.shields.io/docker/pulls/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
@@ -11,11 +12,19 @@ Alpine based docker image with Apache (prefork) & PHP module.
 Supported tags / versions
 -------------------------
 
-- `7.1-apache2.4-alpine3.6` `7.1-apache-alpine` `7-apache-alpine`  
-  [![](https://images.microbadger.com/badges/image/prog/php:7.1-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:7.1-apache2.4-alpine3.6)
+Image tag starts with image version number followed by the versions of php, apache and alpine. Some parts of version
+numbers can be omitted to emulate [semantic versioning](https://semver.org/).
 
-- `5.6-apache2.4-alpine3.6` `5.6-apache-alpine` `5-apache-alpine`  
-  [![](https://images.microbadger.com/badges/image/prog/php:5.6-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:5.6-apache2.4-alpine3.6)
+### Latest release
+
+- `prog/php:0.1[.2]--php7[.1]-apache[2[.4]]-alpine[3[.6]]`  
+  <a>![](https://images.microbadger.com/badges/image/prog/php:0.1.2--php7.1-apache2.4-alpine3.6.svg)</a>
+
+- `prog/php:0.1[.2]--php5[.6]-apache[2[.4]]-alpine[3[.6]]`  
+  <a>![](https://images.microbadger.com/badges/image/prog/php:0.1.2--php5.6-apache2.4-alpine3.6.svg)</a>
+
+- [All Releases](https://github.com/prog/docker-php/releases)
+
 
 Customization
 -------------
@@ -89,7 +98,7 @@ Full usage example
 Add the `Dockerfile` to your project and edit it to your needs:
 
 ```Dockerfile
-FROM prog/php:7.1-apache2.4-alpine3.6
+FROM prog/php:0.1--php7-apache-alpine
 
 ## install required php modules
 RUN image--php-add-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
