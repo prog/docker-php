@@ -19,4 +19,4 @@ FROM scratch
 COPY --from=0 / /
 
 ENTRYPOINT ["image--entrypoint"]
-CMD ["image--command"]
+CMD ["image--start"]
