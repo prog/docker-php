@@ -31,11 +31,12 @@ esac
 
 
 docker build \
-	--build-arg "IMAGE_NAME=${imageName}" \
-	--build-arg "IMAGE_DESCRIPTION=${imageDescription}" \
-	--build-arg "IMAGE_VERSION=${imageVersion}" \
-	--build-arg "VCS_URL=${vcsUrl}" \
-	--build-arg "VCS_REF=${vcsRef}" \
-	--build-arg "BUILD_DATE=${buildDate}" \
 	--build-arg "PHP_PACKAGE=${phpPackage}" \
+	--label "org.label-schema.name=${imageName}" \
+	--label "org.label-schema.description=${imageDescription}" \
+	--label "org.label-schema.version=${imageVersion}" \
+	--label "org.label-schema.vcs-url=${vcsUrl}" \
+	--label "org.label-schema.vcs-ref=${vcsRef}" \
+	--label "org.label-schema.build-date=${buildDate}" \
+	--label "org.label-schema.schema-version=1.0" \
 	-t "${dockerRepo}:${currentTag}" .
