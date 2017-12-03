@@ -86,7 +86,7 @@ RUN image--on-init \
 Full usage example
 ------------------
 
-Add the `Dockerfile` to your project and edit it to your needs:  
+Add the `Dockerfile` to your project and edit it to your needs:
 
 ```Dockerfile
 FROM prog/php:7.1-apache2.4-alpine3.6
@@ -95,7 +95,7 @@ FROM prog/php:7.1-apache2.4-alpine3.6
 RUN image--php-add-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
 
 ## enable required apache modules
-RUN image--apache-enable-mod rewrite
+RUN image--apache-enable-mod deflate filter rewrite
 
 ## set document root
 RUN image--set-docroot /app/public
