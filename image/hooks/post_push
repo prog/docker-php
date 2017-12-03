@@ -6,19 +6,42 @@ set -ex
 
 dockerRepo="${DOCKER_REPO}"
 currentTag="${DOCKER_TAG}"
-currentImage="${dockerRepo}:${currentTag}"
+features=`echo "${currentTag}" | sed -e 's/.*--\(\)/\1/'`
+commit=`git rev-parse --short HEAD`
 
+allGitTags=`git ls-remote --tags -q`
+allVersions=`echo "${allGitTags}" | grep -o 'v[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*' | cut -c2- | sort -Vr`
+currentVersion=`echo "${allGitTags}" | grep "${commit}" | grep -o 'v[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*' | cut -c2- | sort -Vr | head -n 1`
+currentMajor=`echo "${currentVersion}" | awk -F . '{print $1}'`
+currentMinor=`echo "${currentVersion}" | awk -F . '{print $2}'`
+lastMajor=`echo "${allVersions}" | head -n1 | awk -F . '{print $1}'`
+lastMinorOfCurrentMajor=`echo "${allVersions}" | grep ^${currentMajor}\. | head -n1 | awk -F . '{print $2}'`
 
-if [ "${currentTag}" = '7.1-apache2.4-alpine3.6' ]; then
-	extraTags=('7.1-apache-alpine' '7-apache-alpine')
-elif [ "${currentTag}" = '5.6-apache2.4-alpine3.6' ]; then
-	extraTags=('5.6-apache-alpine' '5-apache-alpine')
-else
-	exit 0
+versionTags="{${currentVersion}"
+if [ "${currentMinor}" == "${lastMinorOfCurrentMajor}" ]; then
+	versionTags="${versionTags},${currentMajor}.${currentMinor}"
+	if [ "${currentMajor}" -ne "0" ] && [ "${currentMajor}" == "${lastMajor}" ]; then
+		versionTags="${versionTags},${currentMajor}"
+	fi
 fi
+versionTags="${versionTags}}"
 
 
-for extraTag in "${extraTags[@]}"; do
-	docker tag "${currentImage}" "${dockerRepo}:${extraTag}"
+case "${features}" in
+	'php7.1-apache2.4-alpine3.6')
+		extraTags="${versionTags}--php{7.1,7,}-apache{2.4,2,}-alpine{3.6,3,}"
+		;;
+	'php5.6-apache2.4-alpine3.6')
+		extraTags="${versionTags}--php{5.6,5}-apache{2.4,2,}-alpine{3.6,3,}"
+		;;
+	*)
+		(>&2 echo "ERROR: invalid tag: '${currentTag}'")
+		exit 1
+		;;
+esac
+
+
+for extraTag in `eval "echo ${extraTags}"`; do
+	docker tag "${dockerRepo}:${currentTag}" "${dockerRepo}:${extraTag}" && \
 	docker push "${dockerRepo}:${extraTag}"
 done

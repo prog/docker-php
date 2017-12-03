@@ -6,21 +6,27 @@ set -ex
 
 dockerRepo="${DOCKER_REPO}"
 currentTag="${DOCKER_TAG}"
-currentImage="${dockerRepo}:${currentTag}"
+features=`echo "${currentTag}" | sed -e 's/.*--\(\)/\1/'`
+commit=`git rev-parse --short HEAD`
+date=`date -u +'%Y-%m-%dT%H:%M:%SZ'`
 
 
-if [ "${currentTag}" = '7.1-apache2.4-alpine3.6' ]; then
-	phpPackage='php7-apache2<7.1.999'
-elif [ "${currentTag}" = '5.6-apache2.4-alpine3.6' ]; then
-	phpPackage='php5-apache2<5.6.999'
-else
-	(>&2 echo "ERROR: invalid tag: '${currentTag}'")
-	exit 1
-fi
+case "${features}" in
+	'php7.1-apache2.4-alpine3.6')
+		phpPackage='php7-apache2<7.1.999'
+		;;
+	'php5.6-apache2.4-alpine3.6')
+		phpPackage='php5-apache2<5.6.999'
+		;;
+	*)
+		(>&2 echo "ERROR: invalid tag: '${currentTag}'")
+		exit 1
+		;;
+esac
 
 
 docker build \
 	--build-arg "PHP_PACKAGE=${phpPackage}" \
-	--build-arg "BUILD_DATE=`date -u +'%Y-%m-%dT%H:%M:%SZ'`" \
-	--build-arg "VCS_REF=`git rev-parse --short HEAD`" \
-	-t "${currentImage}" .
+	--build-arg "BUILD_DATE=${date}" \
+	--build-arg "VCS_REF=${commit}" \
+	-t "${dockerRepo}:${currentTag}" .
