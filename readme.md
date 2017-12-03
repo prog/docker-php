@@ -1,9 +1,9 @@
 Base docker image for PHP applications
 ======================================
-[![Release](https://img.shields.io/github/release/prog/docker-php/all.svg?style=flat-square)](https://github.com/prog/docker-php/releases)
-[![Docker Build Status](https://img.shields.io/docker/build/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/builds/)
-<a>![Docker Build Status](https://img.shields.io/docker/pulls/prog/php.svg?style=flat-square)</a>
-<a>![Docker Build Status](https://img.shields.io/docker/stars/prog/php.svg?style=flat-square)</a>
+[![release](https://img.shields.io/github/release/prog/docker-php/all.svg?style=flat-square)](https://github.com/prog/docker-php/releases)
+[![docker build status](https://img.shields.io/docker/build/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/builds/)
+[![docker pulls](https://img.shields.io/docker/pulls/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
+[![dockerhub stars](https://img.shields.io/docker/stars/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
 
 Alpine based docker image with Apache (prefork) & PHP module.
 
@@ -16,11 +16,13 @@ numbers can be omitted to emulate [semantic versioning](https://semver.org/).
 
 ### Latest release
 
-- `prog/php:0.1[.2]--php7[.1]-apache[2[.4]]-alpine[3[.6]]`  
-  <a>![](https://images.microbadger.com/badges/image/prog/php:0.1.2--php7.1-apache2.4-alpine3.6.svg)</a>
+- `prog/php:0.1[.2]--php7[.1]-apache[2[.4]]-alpine[3[.6]]`
 
-- `prog/php:0.1[.2]--php5[.6]-apache[2[.4]]-alpine[3[.6]]`  
-  <a>![](https://images.microbadger.com/badges/image/prog/php:0.1.2--php5.6-apache2.4-alpine3.6.svg)</a>
+  [![](https://images.microbadger.com/badges/image/prog/php:0.1.2--php7.1-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:0.1.2--php7.1-apache2.4-alpine3.6)
+
+- `prog/php:0.1[.2]--php5[.6]-apache[2[.4]]-alpine[3[.6]]`
+
+  [![](https://images.microbadger.com/badges/image/prog/php:0.1.2--php5.6-apache2.4-alpine3.6.svg)](https://microbadger.com/images/prog/php:0.1.2--php7.1-apache2.4-alpine3.6)
 
 - [All Releases](https://github.com/prog/docker-php/releases)
 
