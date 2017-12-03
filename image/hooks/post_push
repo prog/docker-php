@@ -29,7 +29,7 @@ versionTags="${versionTags}}"
 
 case "${features}" in
 	'php7.1-apache2.4-alpine3.6')
-		extraTags="${versionTags}--php{7.1,7,}-apache{2.4,2,}-alpine{3.6,3,}"
+		extraTags="${versionTags}--php{7.1,7}-apache{2.4,2,}-alpine{3.6,3,}"
 		;;
 	'php5.6-apache2.4-alpine3.6')
 		extraTags="${versionTags}--php{5.6,5}-apache{2.4,2,}-alpine{3.6,3,}"
