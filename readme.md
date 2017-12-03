@@ -1,10 +1,9 @@
 Base docker image for PHP applications
 ======================================
 [![Release](https://img.shields.io/github/release/prog/docker-php/all.svg?style=flat-square)](https://github.com/prog/docker-php/releases)
-[![Docker Build Status](https://img.shields.io/docker/build/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
-[![Docker Build Status](https://img.shields.io/docker/automated/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
-[![Docker Build Status](https://img.shields.io/docker/pulls/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
-[![Docker Build Status](https://img.shields.io/docker/stars/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/)
+[![Docker Build Status](https://img.shields.io/docker/build/prog/php.svg?style=flat-square)](https://hub.docker.com/r/prog/php/builds/)
+<a>![Docker Build Status](https://img.shields.io/docker/pulls/prog/php.svg?style=flat-square)</a>
+<a>![Docker Build Status](https://img.shields.io/docker/stars/prog/php.svg?style=flat-square)</a>
 
 Alpine based docker image with Apache (prefork) & PHP module.
 
