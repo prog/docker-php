@@ -5,7 +5,7 @@ ARG PHP_PACKAGE
 
 
 RUN : \
- && apk --update add "${PHP_PACKAGE}" \
+ && apk --update --no-cache add "${PHP_PACKAGE}" \
  && mkdir -p /run/apache2 \
  && ln -sfT /dev/stderr /var/log/apache2/error.log \
  && ln -sfT /dev/stdout /var/log/apache2/access.log \
