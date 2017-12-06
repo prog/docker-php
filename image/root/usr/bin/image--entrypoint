@@ -11,4 +11,4 @@ image--init
 
 ## execute command
 
-exec $@
+exec "$@"
