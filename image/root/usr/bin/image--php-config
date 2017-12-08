@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+
+set -e
+
+
+if [ $(apk info -e php7-common) ]; then
+	phpIniFile="/etc/php7/php.ini"
+elif [ $(apk info -e php5-common) ]; then
+	phpIniFile=
+	echo "Not implemented"
+	exit 2
+else
+	exit 1
+fi
+
+
+while [ $# -gt 0 ]; do
+
+	arg="$1"; shift
+
+	if [ $(echo "${arg}" | grep "=") ]; then
+		# arg contains '='
+		name=$(echo "${arg}" | cut -d= -f1)
+		value=$(echo "${arg}" | cut -d= -f2-)
+	else
+		# arg does not contain '='
+		name="${arg}"
+		value="$1"; shift
+	fi
+
+	echo "${name} = ${value}" >> "${phpIniFile}"
+
+done
