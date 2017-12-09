@@ -46,6 +46,24 @@ RUN image--php-add-mod \
     cli gd mbstring pdo session ...  
 ```
 
+### Edit PHP config
+
+Add configuration directives to the end of the `php.ini` file: 
+
+```bash
+image--php-config [directives]
+```
+
+```Dockerfile
+RUN image--php-config \
+    expose_php=Off \
+    max_execution_time=10 \
+    memory_limit=32M \
+    post_max_size=20M \
+    upload_max_filesize=20M \
+    date.timezone="Europe/Bratislava"
+```
+
 ### Enable Apache modules
 
 Only minimal set of apache modules are enabled by default.
@@ -103,6 +121,15 @@ FROM prog/php:0.1--php7-apache-alpine
 
 ## install required php modules
 RUN image--php-add-mod cli iconv json mbstring pdo_mysql session sqlite3 tokenizer
+
+## edit php config
+RUN image--php-config \
+   'expose_php=Off' \
+   'max_execution_time=10' \
+   'memory_limit=32M' \
+   'post_max_size=20M' \
+   'upload_max_filesize=20M' \
+   'date.timezone="Europe/Bratislava"'
 
 ## enable required apache modules
 RUN image--apache-enable-mod deflate filter rewrite
