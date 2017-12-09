@@ -84,6 +84,7 @@ Apache is set to serve `/app` directory by default.
 You can change it by running:
 
 ```bash
+image--apache-set-docroot [path]
 image--set-docroot [path]
 ```
 
