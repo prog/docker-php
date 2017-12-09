@@ -16,10 +16,12 @@ command="apk add --update --no-cache"
 for module in "$@"; do
 	if [ "${module}" = "cli" ] && [ "${php}" = "php7" ]; then
 		command="${command} php7"
+	elif [ "${module}" = "cli" ] && [ "${php}" = "php5" ]; then
+		command="ln -s php5 /usr/bin/php && ${command} ${php}-${module}"
 	else
 		command="${command} ${php}-${module}"
 	fi
 done
 
 
-exec ${command}
+eval "${command}"
