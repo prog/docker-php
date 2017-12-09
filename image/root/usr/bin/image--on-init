@@ -7,6 +7,6 @@ set -e
 basedir=$(dirname "$0")
 
 for line in "$@"; do
-	echo "$line" >> ${basedir}/webserver--init
+	echo "$line" >> ${basedir}/image--init
 done
 
