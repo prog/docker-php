@@ -7,9 +7,7 @@ set -e
 if [ $(apk info -e php7-common) ]; then
 	phpIniFile="/etc/php7/php.ini"
 elif [ $(apk info -e php5-common) ]; then
-	phpIniFile=
-	echo "Not implemented"
-	exit 2
+	phpIniFile="/etc/php5/php.ini"
 else
 	exit 1
 fi
