@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+
+set -e
+
+
+arg=${1}
+
+
+if [ $# -ne 1 ]; then
+  (>&2 echo "Usage:\n user[:group]")
+  exit 1
+fi
+
+if [ $(echo "${arg}" | grep ":") ]; then
+  user="$(echo "${arg}" | cut -d: -f1)"
+  group="$(echo "${arg}" | cut -d: -f2-)"
+else
+  user="${arg}"
+  group=$(id -gn "${user}")
+fi
+
+
+sed -i "s|User apache|User ${user}|" /etc/apache2/httpd.conf
+sed -i "s|Group apache|Group ${group}|" /etc/apache2/httpd.conf
